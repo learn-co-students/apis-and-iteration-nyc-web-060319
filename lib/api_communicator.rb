@@ -3,6 +3,9 @@ require 'json'
 require 'pry'
 
 def movies(character_hash)
+  if character_hash == nil
+    raise StandardError.new "Character not found!"
+  end
   film_array = character_hash["films"]
   responses = film_array.map do |film|
     JSON.parse(RestClient.get(film))
